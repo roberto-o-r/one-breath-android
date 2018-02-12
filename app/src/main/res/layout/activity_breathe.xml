@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait"
+    tools:context="com.isscroberto.onebreath.main.BreatheActivity">
+
+    <!-- Background. -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back01" />
+
+    <!-- Opacity. -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blackOpacity" />
+
+    <!-- Configuration. -->
+    <RelativeLayout
+        android:id="@+id/layout_configuration"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="64dp"
+            android:text="Remember to breathe.\n\nIt is after all, the secret of life."
+            android:textAlignment="center"
+            android:textAppearance="@style/Headline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_sound"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_volume_up_white_24dp" />
+
+            <Spinner
+                android:id="@+id/spinner_minutes"
+                style="@style/SpinnerStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:popupBackground="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/image_vibrate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_vibration_white_24dp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- Breathing circle. -->
+    <View
+        android:id="@+id/view_circle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circle" />
+
+    <!-- Feedback. -->
+    <com.github.stkent.amplify.prompt.DefaultLayoutPromptView
+        android:id="@+id/prompt_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        app:prompt_view_thanks_display_time_ms="3000" />
+
+</RelativeLayout>

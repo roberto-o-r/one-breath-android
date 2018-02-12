@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "224871211920",
+    "firebase_url": "https://onebreath-android.firebaseio.com",
+    "project_id": "onebreath-android",
+    "storage_bucket": "onebreath-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224871211920:android:ee13a5d36e1a7cb6",
+        "android_client_info": {
+          "package_name": "com.isscroberto.onebreath"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224871211920-6smcnd1m3qc0v6nrbb5csaqus2on0nrh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isscroberto.onebreath",
+            "certificate_hash": "14f1df60324012d1b3fad923ebc1d4726bbcf9ff"
+          }
+        },
+        {
+          "client_id": "224871211920-3jt6mp07cakbjci0rpj4crs4ip4rjr3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2wV-AWHRKX2JlqY26wD7C0vo2w5L_XeA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224871211920-3jt6mp07cakbjci0rpj4crs4ip4rjr3h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
