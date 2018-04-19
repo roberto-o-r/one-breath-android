@@ -24,21 +24,26 @@ import android.media.AudioManager
 import android.view.WindowManager
 import com.github.stkent.amplify.prompt.DefaultLayoutPromptView
 import com.github.stkent.amplify.tracking.Amplify
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.isscroberto.onebreath.BuildConfig
 
 
 class BreatheActivity : AppCompatActivity(), BreatheContract.View {
 
-    internal lateinit var presenter: BreatheContract.Presenter
-    internal lateinit var animatorSet: AnimatorSet
-    internal lateinit var startAnimator : ValueAnimator
-    internal lateinit var inhaleAnimator : ValueAnimator
-    internal lateinit var exhaleAnimator : ValueAnimator
-    internal lateinit var finishAnimator : ValueAnimator
-    internal var breathing: Boolean = false
-    internal var config: Config = Config()
-    internal lateinit var vibrator : Vibrator
-    internal lateinit var soundPool : SoundPool
-    internal var soundId : Int = 0
+    private lateinit var presenter: BreatheContract.Presenter
+    private lateinit var mInterstitialAd: InterstitialAd
+    private lateinit var animatorSet: AnimatorSet
+    private lateinit var startAnimator : ValueAnimator
+    private lateinit var inhaleAnimator : ValueAnimator
+    private lateinit var exhaleAnimator : ValueAnimator
+    private lateinit var finishAnimator : ValueAnimator
+    private var breathing: Boolean = false
+    private var config: Config = Config()
+    private lateinit var vibrator : Vibrator
+    private lateinit var soundPool : SoundPool
+    private var soundId : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +100,24 @@ class BreatheActivity : AppCompatActivity(), BreatheContract.View {
         if(savedInstanceState == null) {
             var promptView = prompt_view as DefaultLayoutPromptView
             Amplify.getSharedInstance().promptIfReady(promptView)
+        }
+
+        // Ads.
+        val adRequest: AdRequest
+        if (BuildConfig.DEBUG) {
+            adRequest = AdRequest.Builder()
+                    .addTestDevice(getString(R.string.test_device))
+                    .build()
+        } else {
+            adRequest = AdRequest.Builder().build()
+        }
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = "ca-app-pub-7136115266295688/4262675659"
+        mInterstitialAd.loadAd(adRequest)
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                mInterstitialAd.loadAd(adRequest)
+            }
         }
 
         // Create the presenter.
@@ -256,6 +279,8 @@ class BreatheActivity : AppCompatActivity(), BreatheContract.View {
         animatorSet.end()
         animatorSet.removeAllListeners()
         animatorSet.cancel()
+        // Show ad.
+        showInterstitialAd()
     }
 
     private fun performNotification() {
@@ -273,6 +298,12 @@ class BreatheActivity : AppCompatActivity(), BreatheContract.View {
 
     private fun performSound() {
         soundPool.play(soundId, 1f, 1f, 1, 0, 1f)
+    }
+
+    private fun showInterstitialAd() {
+        if (mInterstitialAd.isLoaded) {
+            mInterstitialAd.show()
+        }
     }
 
 }
