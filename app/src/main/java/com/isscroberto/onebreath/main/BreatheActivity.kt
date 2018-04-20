@@ -112,7 +112,7 @@ class BreatheActivity : AppCompatActivity(), BreatheContract.View {
             adRequest = AdRequest.Builder().build()
         }
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-7136115266295688/4262675659"
+        mInterstitialAd.adUnitId = getString(R.string.ad_unit_id);
         mInterstitialAd.loadAd(adRequest)
         mInterstitialAd.adListener = object : AdListener() {
             override fun onAdClosed() {
