@@ -6,11 +6,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.media.SoundPool
 import android.opengl.Visibility
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.animation.AccelerateInterpolator
@@ -21,6 +17,7 @@ import com.isscroberto.onebreath.R
 import com.isscroberto.onebreath.data.Config
 import kotlinx.android.synthetic.main.activity_breathe.*
 import android.media.AudioManager
+import android.os.*
 import android.view.WindowManager
 import com.github.stkent.amplify.prompt.DefaultLayoutPromptView
 import com.github.stkent.amplify.tracking.Amplify
@@ -44,6 +41,7 @@ class BreatheActivity : AppCompatActivity(), BreatheContract.View {
     private lateinit var vibrator : Vibrator
     private lateinit var soundPool : SoundPool
     private var soundId : Int = 0
+    lateinit var timer: CountDownTimer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -256,6 +254,21 @@ class BreatheActivity : AppCompatActivity(), BreatheContract.View {
 
             override fun onAnimationRepeat(animation: Animator) {}
         })
+    }
+
+    override fun startTimer() {
+        timer = object : CountDownTimer(config.minutes.toLong() * 60 * 1000, 1000) {
+            override fun onFinish() {
+                presenter.stopBreathing()
+            }
+            override fun onTick(millisUntilFinished: Long) {
+
+            }
+        }.start()
+    }
+
+    override fun stopTimer() {
+        timer.cancel();
     }
 
     override fun stopAnimation() {

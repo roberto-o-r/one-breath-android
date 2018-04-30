@@ -1,6 +1,5 @@
 package com.isscroberto.onebreath.main
 
-import android.os.CountDownTimer
 import com.isscroberto.onebreath.data.Config
 
 /**
@@ -9,7 +8,6 @@ import com.isscroberto.onebreath.data.Config
 class BreathePresenter(view: BreatheContract.View) : BreatheContract.Presenter {
 
     val view = view
-    lateinit var timer: CountDownTimer
 
     init {
         view.setPresenter(this)
@@ -28,25 +26,18 @@ class BreathePresenter(view: BreatheContract.View) : BreatheContract.Presenter {
 
     override fun startBreathing(config: Config) {
         // Hide configuration.
-        view.hideConfiguration();
+        view.hideConfiguration()
         // Start animation.
-        view.startAnimation();
+        view.startAnimation()
         // Start timer.
-        timer = object : CountDownTimer(config.minutes.toLong() * 60 * 1000, 1000) {
-            override fun onFinish() {
-                stopBreathing()
-            }
-            override fun onTick(millisUntilFinished: Long) {
-
-            }
-        }.start()
+        view.startTimer()
     }
 
     override fun stopBreathing() {
         // Stop timer.
-        timer.cancel()
+        view.stopTimer()
         // Stop animation.
-        view.stopAnimation();
+        view.stopAnimation()
     }
 
 }

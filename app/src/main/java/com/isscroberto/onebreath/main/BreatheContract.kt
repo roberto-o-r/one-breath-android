@@ -13,6 +13,8 @@ interface BreatheContract {
         fun loadConfiguration(list: ArrayList<String>);
         fun startAnimation()
         fun stopAnimation()
+        fun startTimer();
+        fun stopTimer();
         fun hideConfiguration()
         fun showConfiguration()
     }
