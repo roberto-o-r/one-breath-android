@@ -9,8 +9,8 @@ android {
         applicationId "com.isscroberto.onebreath"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 3
-        versionName "18.04.30"
+        versionCode 4
+        versionName "18.10.01"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

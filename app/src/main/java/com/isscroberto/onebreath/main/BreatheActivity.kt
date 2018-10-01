@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.Intent
 import android.media.SoundPool
 import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
@@ -17,6 +18,7 @@ import com.isscroberto.onebreath.R
 import com.isscroberto.onebreath.data.Config
 import kotlinx.android.synthetic.main.activity_breathe.*
 import android.media.AudioManager
+import android.net.Uri
 import android.os.*
 import android.view.WindowManager
 import com.github.stkent.amplify.prompt.DefaultLayoutPromptView
@@ -85,6 +87,11 @@ class BreatheActivity : AppCompatActivity(), BreatheContract.View {
                 config.vibration = true;
                 image_vibrate.setAlpha(1f)
             }
+        })
+
+        // Privacy policy.
+        text_privacy_policy.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://isscroberto.com/daily-bible-privacy-policy/")))
         })
 
         // Create vibrator.

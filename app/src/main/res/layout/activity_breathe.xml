@@ -69,6 +69,17 @@
 
         </LinearLayout>
 
+        <!-- Privacy policy. -->
+        <TextView
+            android:id="@+id/text_privacy_policy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="65dp"
+            android:text="Privacy Policy"
+            android:textColor="@color/whiteOpacity"
+            android:textAlignment="center" />
+
     </RelativeLayout>
 
     <!-- Breathing circle. -->
