@@ -66,3 +66,4 @@ fastlane/readme.md
 
 app/src/main/res/values/secrets.xml
 /.idea
+/.gradle
