@@ -6,7 +6,7 @@ enum class Algorithm(val code: String) {
     SHA1("SHA-1"), SHA256("SHA-256"), SHA512("SHA-512")
 }
 
-fun String.hashStringExtension (algorithm: Algorithm): String {
+fun String.hash (algorithm: Algorithm): String {
     val hexArray = "0123456789ABCDEF"
     val bytes = MessageDigest.getInstance(algorithm.code).digest(this.toByteArray())
 
